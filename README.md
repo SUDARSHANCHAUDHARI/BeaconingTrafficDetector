@@ -1,8 +1,21 @@
-# Beaconing Traffic
+# Beaconing Traffic Detector
 
-**Goal:** Detect periodic malware-like callback traffic.
+[![Python](https://img.shields.io/badge/Python-3.12-blue)](#) [![Status](https://img.shields.io/badge/status-MVP-green)](#) [![Security](https://img.shields.io/badge/security-defensive%20lab-purple)](#)
 
-**MVP:** Analyze timestamped network logs for repeated intervals.
+Lab tool that detects periodic outbound callback behavior from timestamped network logs.
+
+- **Portfolio group:** Cybersecurity lab project
+- **Status:** MVP implemented, tested, committed, and pushed to GitHub
+- **GitHub:** https://github.com/SUDARSHANCHAUDHARI/BeaconingTrafficDetector
+- **Local path:** `/Users/screencloudsudarshan/SUDARSHAN_CODE/sudarshan_repos/CyberSecurity/BeaconingTrafficDetector`
+
+## MVP Snapshot
+
+This repository includes a working MVP with safe sample data, deterministic detection or analysis logic, local tests, and generated output reports where relevant. It is ready for README/demo polish or deeper product work.
+
+## Safe Use
+
+This project is defensive and analysis-focused. Use only with logs, systems, repositories, and lab environments you own or have permission to assess.
 
 ## Core Features
 
@@ -26,17 +39,10 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 - Scores suspicious periodic callbacks
 - Writes Markdown and JSON reports
 
-## Repository Status
+## Roadmap
 
-This repository contains a working Beaconing Traffic Detector MVP with safe sample traffic, interval scoring, generated reports, and tests.
-
-## Production Foundation
-
-- Private GitHub repository linked to `main`
-- Initial MVP scaffold committed
-- CI repository-health workflow
-- Security policy
-- Contribution guide
-- Pull request and issue templates
-- Production readiness checklist
-- Safe ignore rules for local secrets and generated files
+- Polish sample output screenshots or terminal demos
+- Add architecture diagram and deeper implementation notes
+- Expand test coverage around edge cases
+- Add Docker or local demo workflow where useful
+- Prepare `v0.1.0-mvp` release notes
