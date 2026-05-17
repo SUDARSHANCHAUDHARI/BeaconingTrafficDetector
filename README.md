@@ -11,13 +11,24 @@
 - score suspicious behavior
 - show graph/table
 
-## Status
+## Quick Start
 
-Scaffolded. Implementation pending.
+```bash
+python3 -m src.report data/normal-network.csv data/beacon-sample.csv
+python3 -m unittest discover -s tests -p 'test_*.py'
+```
+
+## MVP Capabilities
+
+- Parses timestamped network CSV logs
+- Groups repeated outbound traffic by source, destination, and port
+- Calculates interval jitter and consistency
+- Scores suspicious periodic callbacks
+- Writes Markdown and JSON reports
 
 ## Repository Status
 
-This repository contains the production-ready foundation for the Beaconing Traffic Detector MVP. The current codebase is scaffolded and ready for focused implementation work.
+This repository contains a working Beaconing Traffic Detector MVP with safe sample traffic, interval scoring, generated reports, and tests.
 
 ## Production Foundation
 
@@ -29,4 +40,3 @@ This repository contains the production-ready foundation for the Beaconing Traff
 - Pull request and issue templates
 - Production readiness checklist
 - Safe ignore rules for local secrets and generated files
-

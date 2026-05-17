@@ -1,0 +1,10 @@
+[
+  {
+    "source_ip": "10.0.0.9",
+    "destination_ip": "198.51.100.77",
+    "destination_port": 443,
+    "score": 90,
+    "risk": "high",
+    "reason": "6 repeated outbound events; very consistent callback interval; average interval is 60.0 seconds"
+  }
+]
