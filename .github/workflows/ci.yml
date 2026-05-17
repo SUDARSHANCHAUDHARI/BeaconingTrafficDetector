@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  repository-health:
+    name: Repository health
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify required files
+        run: |
+          test -f README.md
+          test -f SECURITY.md
+          test -f CONTRIBUTING.md
+          test -f LICENSE
+          test -f docs/PRODUCTION_READINESS.md
+
+      - name: Check for accidental secrets placeholders
+        run: |
+          ! grep -RInE '(api[_-]?key|token|secret|password) *= *["'"''][^"'"'']{8,}' . \
+            --exclude-dir=.git \
+            --exclude=SECURITY.md
+
+  python-health:
+    name: Python syntax health
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile Python files
+        run: python -m compileall .
