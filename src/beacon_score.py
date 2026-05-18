@@ -12,8 +12,16 @@ class BeaconFinding:
     source_ip: str
     destination_ip: str
     destination_port: int
+    protocol: str
+    event_count: int
+    first_seen: str
+    last_seen: str
+    average_interval_seconds: float
+    jitter_seconds: float
+    consistency: float
     score: int
     risk: str
+    confidence: str
     reason: str
 
 
@@ -39,8 +47,16 @@ def score_profile(profile: IntervalProfile) -> BeaconFinding | None:
         source_ip=profile.source_ip,
         destination_ip=profile.destination_ip,
         destination_port=profile.destination_port,
+        protocol=profile.protocol,
+        event_count=profile.event_count,
+        first_seen=profile.first_seen,
+        last_seen=profile.last_seen,
+        average_interval_seconds=profile.average_interval_seconds,
+        jitter_seconds=profile.jitter_seconds,
+        consistency=profile.consistency,
         score=score,
         risk="high" if score >= 80 else "medium",
+        confidence="strong" if score >= 80 and profile.consistency >= 0.9 else "moderate",
         reason="; ".join(reasons),
     )
 

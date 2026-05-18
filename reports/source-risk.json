@@ -1,0 +1,22 @@
+[
+  {
+    "source_ip": "10.0.0.9",
+    "profiles": 1,
+    "findings": 1,
+    "max_risk": "high",
+    "destinations": [
+      "198.51.100.77"
+    ],
+    "average_consistency": 1.0
+  },
+  {
+    "source_ip": "10.0.0.5",
+    "profiles": 1,
+    "findings": 0,
+    "max_risk": "low",
+    "destinations": [
+      "93.184.216.34"
+    ],
+    "average_consistency": 0.565
+  }
+]

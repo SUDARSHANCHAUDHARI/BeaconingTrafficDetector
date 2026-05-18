@@ -37,12 +37,29 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 - Groups repeated outbound traffic by source, destination, and port
 - Calculates interval jitter and consistency
 - Scores suspicious periodic callbacks
-- Writes Markdown and JSON reports
+- Adds confidence, timing window, and source-risk context
+- Writes Markdown report, triage handoff, interval profile JSON, source risk JSON, and findings JSON
+
+## Demo Artifacts
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Security notes](docs/SECURITY_NOTES.md)
+- [Demo walkthrough](docs/DEMO.md)
+- [Release notes](docs/RELEASE_NOTES.md)
+- [Sample beacon report](reports/beacon-report.md)
+- [Sample triage report](reports/triage.md)
+- [Sample source risk table](reports/source-risk.json)
+
+## Docker Demo
+
+```bash
+docker compose run --rm beaconing-demo
+```
 
 ## Roadmap
 
-- Polish sample output screenshots or terminal demos
-- Add architecture diagram and deeper implementation notes
-- Expand test coverage around edge cases
-- Add Docker or local demo workflow where useful
-- Prepare `v0.1.0-mvp` release notes
+- Add allowlist/suppression support for known polling services.
+- Add configurable interval ranges and minimum event counts.
+- Add protocol-aware scoring for DNS, HTTPS, and unusual ports.
+- Add dashboard charts for interval consistency.
+- Prepare GitHub release `v0.1.0-mvp`.

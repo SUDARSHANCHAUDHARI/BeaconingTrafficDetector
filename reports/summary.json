@@ -1,0 +1,9 @@
+{
+  "events": 11,
+  "sources": 3,
+  "destinations": 3,
+  "interval_profiles": 2,
+  "beacon_findings": 1,
+  "high_risk": 1,
+  "medium_risk": 0
+}
