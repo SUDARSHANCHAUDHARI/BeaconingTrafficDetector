@@ -1,67 +1,85 @@
 # Beaconing Traffic Detector
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue)](#) [![Status](https://img.shields.io/badge/status-MVP-green)](#) [![Security](https://img.shields.io/badge/security-defensive%20lab-purple)](#)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](#requirements)
+[![Status](https://img.shields.io/badge/status-MVP-green)](#status)
+[![Security](https://img.shields.io/badge/security-defensive%20lab-purple)](#safe-use)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Lab tool that detects periodic outbound callback behavior from timestamped network logs.
+Detects periodic outbound callback (C2 beacon) behavior from timestamped network logs by scoring inter-arrival timing consistency per source/destination pair.
 
-- **Portfolio group:** Cybersecurity lab project
-- **Status:** MVP implemented, tested, committed, and pushed to GitHub
-- **GitHub:** https://github.com/SUDARSHANCHAUDHARI/BeaconingTrafficDetector
-- **Local path:** `/Users/screencloudsudarshan/SUDARSHAN_CODE/sudarshan_repos/CyberSecurity/BeaconingTrafficDetector`
+---
 
-## MVP Snapshot
+## Overview
 
-This repository includes a working MVP with safe sample data, deterministic detection or analysis logic, local tests, and generated output reports where relevant. It is ready for README/demo polish or deeper product work.
+Beaconing Traffic Detector is a defensive analysis lab tool that parses timestamped CSV network logs, groups repeated outbound traffic by source/destination/port, and scores how "periodic" each pattern is. High-confidence periodic callbacks — the signature of command-and-control beaconing — are flagged with a risk level and timing-window context. Outputs include Markdown reports, source risk JSON, interval profiles, and an analyst triage handoff.
 
-## Safe Use
+## Features
 
-This project is defensive and analysis-focused. Use only with logs, systems, repositories, and lab environments you own or have permission to assess.
+- Parses timestamped network CSV logs
+- Groups repeated outbound traffic by source, destination, and port
+- Calculates interval jitter and consistency per profile
+- Scores suspicious periodic callbacks with confidence and risk
+- Adds timing-window and source-risk context
+- Outputs Markdown report, triage handoff, interval profile JSON, source risk JSON, and findings JSON
 
-## Core Features
+## Requirements
 
-- detect periodic outbound traffic
-- calculate interval consistency
-- score suspicious behavior
-- show graph/table
+- Python 3.10 or newer
+- Linux, macOS, or Windows
+- No third-party Python packages (standard library only)
+- Optional: Docker for the demo container
 
-
-## Install
+## Installation
 
 ```bash
+git clone https://github.com/SUDARSHANCHAUDHARI/BeaconingTrafficDetector.git
+cd BeaconingTrafficDetector
 pip install .
 ```
 
-This registers the `beaconing-detector` command. Or run directly:
+This registers the `beaconing-detector` CLI command.
+
+To run without installing:
 
 ```bash
 python3 main.py --help
 ```
 
-## Quick Start
+## Usage
+
+Analyze the included sample network logs:
 
 ```bash
-python3 -m src.report data/normal-network.csv data/beacon-sample.csv
-python3 -m unittest discover -s tests -p 'test_*.py'
+python3 main.py data/normal-network.csv data/beacon-sample.csv --out-dir reports
 ```
 
-## MVP Capabilities
+Generated outputs in `reports/`:
 
-- Parses timestamped network CSV logs
-- Groups repeated outbound traffic by source, destination, and port
-- Calculates interval jitter and consistency
-- Scores suspicious periodic callbacks
-- Adds confidence, timing window, and source-risk context
-- Writes Markdown report, triage handoff, interval profile JSON, source risk JSON, and findings JSON
+- `summary.json` — counts, sources, findings
+- `source_risk.json` — per-source risk table
+- `report.md` — Markdown beaconing detection report
+- `triage.md` — analyst triage checklist
 
-## Demo Artifacts
+## Project Structure
 
-- [Architecture](docs/ARCHITECTURE.md)
-- [Security notes](docs/SECURITY_NOTES.md)
-- [Demo walkthrough](docs/DEMO.md)
-- [Release notes](docs/RELEASE_NOTES.md)
-- [Sample beacon report](reports/beacon-report.md)
-- [Sample triage report](reports/triage.md)
-- [Sample source risk table](reports/source-risk.json)
+```
+BeaconingTrafficDetector/
+├── src/            Parser, interval analyzer, beacon scorer, report builder
+├── data/           Safe sample network logs (normal + beacon)
+├── reports/        Example generated output
+├── docker/         Dockerfile + compose support
+├── docs/           Architecture, security notes, demo
+├── tests/          Unit tests
+├── main.py         CLI entrypoint
+├── pyproject.toml  Package metadata
+└── LICENSE
+```
+
+## Testing
+
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py'
+```
 
 ## Docker Demo
 
@@ -69,10 +87,29 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 docker compose run --rm beaconing-demo
 ```
 
+## Safe Use
+
+This project is defensive and analysis-focused. Use only with logs, systems, and lab environments you own or have explicit written permission to assess. The included sample logs are synthetic and safe for public demo use.
+
+## Status
+
+Working CLI MVP with tests, sample data, and Docker support.
+
 ## Roadmap
 
-- Add allowlist/suppression support for known polling services.
-- Add configurable interval ranges and minimum event counts.
-- Add protocol-aware scoring for DNS, HTTPS, and unusual ports.
-- Add dashboard charts for interval consistency.
-- Prepare GitHub release `v0.1.0-mvp`.
+- Support pcap and JSONL log input
+- Configurable interval window and jitter thresholds
+- Allowlist for known periodic services (NTP, telemetry)
+- Visualization of beacon timing distributions
+- GitHub release `v0.1.0-mvp`
+
+## License
+
+Released under the [MIT License](LICENSE). You are free to use, modify, and distribute this software with attribution.
+
+## Author
+
+**Sudarshan Chaudhari** — [SudarshanTechLabs](https://github.com/SUDARSHANCHAUDHARI)
+Bangkok, Thailand
+
+For inquiries: open an issue on [GitHub](https://github.com/SUDARSHANCHAUDHARI/BeaconingTrafficDetector/issues).
