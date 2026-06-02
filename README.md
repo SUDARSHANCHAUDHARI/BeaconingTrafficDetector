@@ -24,6 +24,19 @@ This project is defensive and analysis-focused. Use only with logs, systems, rep
 - score suspicious behavior
 - show graph/table
 
+
+## Install
+
+```bash
+pip install .
+```
+
+This registers the `beaconing-detector` command. Or run directly:
+
+```bash
+python3 main.py --help
+```
+
 ## Quick Start
 
 ```bash
