@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "beaconingtrafficdetector"
+version = "1.0.0"
+description = "Lab tool that detects periodic outbound callback behavior from timestamped network logs"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+
+[project.scripts]
+beaconing-detector = "main:main"
